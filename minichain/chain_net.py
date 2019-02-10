@@ -4,7 +4,6 @@ from mininet.cli import CLI
 from mininet.net import Mininet
 from mininet.link import TCLink
 from go_ether import GoEthereum
-from go_ether2 import GoEthereumTest
 
 class MiniChain(Mininet):
     """
@@ -157,7 +156,6 @@ class MiniChain(Mininet):
             name = 'p%d'%i
             cpu = peers[name]['cpu']
             if peers[name]['cls'] == 'GoEthereum': self.add_peer(name,cls=GoEthereum,cpu=cpu)
-            elif peers[name]['cls'] == 'GoEthereumTest': self.add_peer(name,cls=GoEthereumTest,cpu=cpu)
         self.start()
 
         # start time dilation
