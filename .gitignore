@@ -3,3 +3,6 @@
 *.pdf
 trash/
 nohup.out
+*.egg-info
+build
+dist
