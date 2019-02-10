@@ -1,74 +1,66 @@
 # Minichain
 
-One Paragraph of project description goes here
+Minichain is a blockchain emulator that provides container-based emulation for blockchain application and network environment. You can evaluate the performance of blockchain system under different host-to-host network conditions.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+If you want to use virtual time component, it only supports ubuntu-14.04 so far. 
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+#### Mininet
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+We modify part of Mininet's code to support virtual time. Please use following instructions to install.
 
 ```
-until finished
+$ git clone https://github.com/xwu64/mininet
+$ cd mininet
+$ util/install.sh
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+
+#### Minichain
+
+```
+$ cd
+$ git clone https://github.com/xwu64/Minichain
+$ cd Minichain
+$ sudo python setup.py install
+```
+
+#### Virtual time
+
+Follow the instruction in the repository below.
+
+```
+https://github.com/littlepretty/VirtualTimeKernel
+```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+### Network performance evaluation
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+For evaluating host-to-host delay
 
 ```
-Give an example
+$ cd examples/network_evaluate
+$ sudo python delay.py
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+For evaluating host-to-host throughput
 
 ```
-Give an example
+$ cd examples/network_evaluate
+$ sudo python bw.py
 ```
 
-## Versioning
+### Application evaluation
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+For reproducing experiments in paper.
 
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+```
+$ cd examples/geth_evaluate
+$ sudo python block_dist.py
+```
