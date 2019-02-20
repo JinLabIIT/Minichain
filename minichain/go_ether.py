@@ -120,8 +120,19 @@ class GoEthereum(BlockchainNode):
         _msg = self.send_rpc_cmd('{"method":"admin_addPeer","params":["%s"],"id":1}' % node_addr)
 
     def del_edge(self, node):
-        """ TODO """
-        pass
+        """ Remove neighbor from peer """
+        if self.status != "RUN": self.start_node()
+        # get node address
+        _msg = node.send_rpc_cmd('{"method":"admin_nodeInfo","id":1}')
+
+        if _msg is None: return
+
+        # change depends on rpc message
+        msg = json.loads(_msg)
+        node_addr = msg["result"]["enode"].split("@")[0]+'@'+node.IP()+':'+str(msg["result"]["ports"]["listener"])
+
+        # remove node
+        _msg = self.send_rpc_cmd('{"method":"admin_removePeer", "params":["%s"], "id":1}' % node_addr)
 
     def new_account(self,passphrase=""):
         _msg = self.send_rpc_cmd('{"method": "personal_newAccount", "params": ["%s"], "id":1}' % passphrase)

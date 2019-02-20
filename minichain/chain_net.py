@@ -63,8 +63,6 @@ class MiniChain(Mininet):
             4. loss
             5. max queue size
         """
-        # TODO set without bw
-        # TODO make sure edge is not exist
         def bw_cmds(intf_name,classid, ip_src, bw=None):
             if bw is None: bw=10
             cmds = []
@@ -147,7 +145,6 @@ class MiniChain(Mininet):
         # configure peer
         if flag:
             peer1.add_edge(peer2)
-            #peer2.add_edge(peer1)
 
     def buildChainTopo(self):
         #add peer
@@ -213,20 +210,8 @@ class MiniChain(Mininet):
         print '[%s] peers number:'%asctime(),log
         print '[%s] complete add neighbors'%asctime()
 
-    def self_check(self):
-        # TODO
-        pass
-
     def del_edge(self):
-        # TODO
-        pass
-
-    def peers(self):
-        # TODO
-        pass
-
-    def edges(self):
-        # TODO
+        # TODO: If we disconnected application level connection, is it necessary to remove network connections between two hosts?
         pass
 
     def stop(self,flag=True):
