@@ -73,3 +73,13 @@ For reproducing experiments in paper.
 $ cd examples/geth_evaluate
 $ sudo python block_dist.py
 ```
+
+### Trouble shooting
+
+For error `RTNETLINK answers: File exists`, you need to clear existing virtual interfaces.
+
+```
+$ sudo mn -c
+```
+
+If you abnormally exit program, you should `kill`  executing blockchain applications manually. 
