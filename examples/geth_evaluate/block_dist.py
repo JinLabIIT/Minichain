@@ -51,7 +51,7 @@ def test1(topo, tdf,run_time, output='.'):
     print 'block length:', block_lens
 
     avg_inv = []
-    for i in range(1, block_lens[0]+1,100):
+    for i in range(101, block_lens[0]+1,100):
         t1 = peers[0].get_blockbynumber(i)['timestamp']
         t0 = peers[0].get_blockbynumber(i-100)['timestamp']
         avg_inv.append((int(t1,16)-int(t0,16))/100.0)
@@ -64,8 +64,8 @@ def test1(topo, tdf,run_time, output='.'):
     for i, peer in enumerate(peers):
         block_num = block_lens[i]
         log = [0]*len(peers)
-        for i in range(1, block_num+1):
-            miner_id = peer.get_blockbynumber(i)['miner']
+        for j in range(1, block_num+1):
+            miner_id = peer.get_blockbynumber(j)['miner']
             log[int(miner_id[2:])-1] +=1
         miners_res.append(log)
         res_percent.append(_percent(log))
