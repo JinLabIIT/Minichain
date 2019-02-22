@@ -140,6 +140,13 @@ class GoEthereum(BlockchainNode):
         pub_key = json.loads(_msg)["result"]
         return pub_key
 
+    def get_coinbase(self):
+        _msg = self.send_rpc_cmd('{"jsonrpc":"2.0","method":"eth_coinbase","id":1}')
+        if _msg is None: return
+        if "error" in _msg: return -1
+        return json.loads(_msg)["result"]
+
+
     def set_ether_base(self,address):
         """ address: public key address """
         _msg = self.send_rpc_cmd('{"method": "miner_setEtherbase", "params": ["%s"], "id":1}' % address)
